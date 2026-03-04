@@ -4,7 +4,7 @@ Análise de [nome da base de dados escolhida] para identificar [objetivo princip
 análise].
 ## Integrantes
 - José Lucas Evélinton da silva  
-- Nome 2  
+- Jessica Dutra Ribeiro 
 - Nome 3  
 - Nome 4
 - Nome 5
