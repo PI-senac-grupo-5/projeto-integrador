@@ -7,6 +7,7 @@ análise].
 <<<<<<< HEAD
 - Jessica Dutra Ribeiro 
 =======
+- Anne Caroline Risso Sulzer
 >>>>>>> 3a0d7b7d162155ecaeec6b620f19765065d1ea7d
 - Nome 3  
 - Nome 4
