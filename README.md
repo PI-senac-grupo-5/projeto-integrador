@@ -3,18 +3,23 @@
 Análise de [nome da base de dados escolhida] para identificar [objetivo principal da
 análise].
 ## Integrantes
-- Nome 1 – Função/Tarefa
-- Nome 2 – Função/Tarefa
-- Nome 3 – Função/Tarefa
-- Nome 4 – Função/Tarefa
+- Nome 1  
+- Nome 2  
+- Nome 3  
+- Nome 4
+- Nome 5
+- Nome 6
+## Times
+- Time 1
+- Time 2
+- Time 3
 ## Objetivo da Análise
 Explicar brevemente o que o grupo pretende descobrir ou demonstrar com os dados.
 Exemplo: "Nosso objetivo é analisar os padrões de consumo de clientes de ecommerce e identificar fatores que influenciam a fidelização."
 ## Planejamento das Tarefas
-- **Coleta e organização dos dados:** Responsável X
-- **Limpeza e transformação dos dados:** Responsável Y
-- **Análise estatística e métricas:** Responsável Z
-- **Visualizações e dashboard:** Responsável W
+- **Coleta, validação e transformação dos dados:** Time 1
+- **Análise estatística e métricas:** Time 2
+- **Visualizações e dashboard:** Time 3
 ### Cronograma
 - Semana 1: Escolha e organização da base de dados
 - Semana 2: Limpeza e transformação dos dados
