@@ -6,7 +6,7 @@ análise].
 - José Lucas Evélinton da silva  
 - Jessica Dutra Ribeiro 
 - Anne Caroline Risso Sulzer
-- Nome 3  
+- Renato de Sena da Silva
 - Nome 4
 - Nome 5
 - Nome 6
