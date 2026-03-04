@@ -3,7 +3,7 @@
 Análise de [nome da base de dados escolhida] para identificar [objetivo principal da
 análise].
 ## Integrantes
-- Nome 1  
+- José Lucas Evélinton da silva  
 - Nome 2  
 - Nome 3  
 - Nome 4
