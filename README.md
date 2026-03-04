@@ -15,11 +15,10 @@ análise].
 - Time 3
 ## Objetivo da Análise
 Explicar brevemente o que o grupo pretende descobrir ou demonstrar com os dados.
-Exemplo: "Nosso objetivo é analisar os padrões de consumo de clientes de ecommerce e identificar fatores que influenciam a fidelização."
 ## Planejamento das Tarefas
 - **Coleta, validação e transformação dos dados:** Time 1
 - **Análise estatística e métricas:** Time 2
-- **Visualizações e dashboard:** Time 3
+- **Visualizações e Dashboards:** Time 3
 ### Cronograma
 - Semana 1: Escolha e organização da base de dados
 - Semana 2: Limpeza e transformação dos dados
@@ -33,6 +32,8 @@ Exemplo: "Nosso objetivo é analisar os padrões de consumo de clientes de ecomm
 - Gráfico de barras para comparar categorias
 - Gráfico de linha para evolução temporal
 - Métricas principais: média, mediana, crescimento percentual
+## Como rodar o projeto
+- Comandos para rodar o projeto
 ---
 ### Observações
 - Todas as etapas serão registradas neste repositório.
