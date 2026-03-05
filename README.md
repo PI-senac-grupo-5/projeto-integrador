@@ -8,8 +8,7 @@ análise].
 - Anne Caroline Risso Sulzer
 - Renato de Sena da Silva
 - Lucas Randon Marques
-- Nome 5
-- Nome 6
+- Guilherme Piva Matte
 ## Times
 - Time 1
 - Time 2
