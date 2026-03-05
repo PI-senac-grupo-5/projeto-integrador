@@ -7,7 +7,7 @@ análise].
 - Jessica Dutra Ribeiro 
 - Anne Caroline Risso Sulzer
 - Renato de Sena da Silva
-- Nome 4
+- Lucas Randon Marques
 - Nome 5
 - Nome 6
 ## Times
