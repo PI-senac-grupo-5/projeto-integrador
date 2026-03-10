@@ -1,40 +1,78 @@
 # Projeto Integrador - Senac EAD
+
 ## Tema do Projeto
-Análise de [nome da base de dados escolhida] para identificar [objetivo principal da
-análise].
+
+O objetivo do projeto usando o `50k Bug Dataset` é organizar e analisar os registros de bugs para extrair informações
+úteis
+que ajudem a entender padrões, severidade e evolução dos problemas reportados.
+
 ## Integrantes
-- José Lucas Evélinton da silva  
-- Jessica Dutra Ribeiro 
+
+- José Lucas Evélinton da silva
+- Jessica Dutra Ribeiro
 - Anne Caroline Risso Sulzer
 - Renato de Sena da Silva
 - Lucas Randon Marques
 - Guilherme Piva Matte
+
 ## Times
-- Time 1
-- Time 2
-- Time 3
+
+- Time 1 [Lucas Randon Marque | Anne Caroline Risso Sulzer]
+- Time 2 [Jessica Dutra Ribeiro | José Lucas Evélinton da silva]
+- Time 3 [Guilherme Piva Matte | Renato de Sena da Silva]
+
+## Contexto
+
+O arquivo bug_dataset_50k.csv contém informações detalhadas sobre 50.000 relatórios de erros de software coletados de
+vários projetos. Cada linha representa um único bug e inclui um identificador exclusivo (bug_id), um título curto e uma
+descrição detalhada que explica o problema. Ele também contém um código de erro associado ao bug, uma categoria de bug
+classificando o tipo de problema e o domínio de bug indicando o subsistema afetado. Campos adicionais incluem a pilha de
+tecnologia envolvida, a gravidade do bug (Baixo, Médio, Alto, Crítico), o ambiente em que ocorreu (Desenvolvimento,
+Encenação, Produção) e a função de desenvolvedor designada para resolvê-lo. Este arquivo é adequado para tarefas como
+classificação de bugs, recomendação de desenvolvedores e análise exploratória de defeitos de software em tecnologias e
+ambientes.
+
 ## Objetivo da Análise
+
 Explicar brevemente o que o grupo pretende descobrir ou demonstrar com os dados.
+
 ## Planejamento das Tarefas
+
 - **Coleta, validação e transformação dos dados:** Time 1
 - **Análise estatística e métricas:** Time 2
 - **Visualizações e Dashboards:** Time 3
+
 ### Cronograma
+
 - Semana 1: Escolha e organização da base de dados
 - Semana 2: Limpeza e transformação dos dados
 - Semana 3: Análise e definição das métricas
-- Semana 4: Criação do dashboard e ajustes finais
+- Semana 4: Desenvolvimento do ETL
+- Semana 5: Criação do dashboard e ajustes finais
+
 ## Transformações previstas
-- Remoção de duplicados
+
+- Remoção de valores nulos
 - Normalização de valores
-- Criação de novas variáveis (ex.: categorias agrupadas)
+
 ## Ideia inicial do Dashboard
+
 - Gráfico de barras para comparar categorias
 - Gráfico de linha para evolução temporal
-- Métricas principais: média, mediana, crescimento percentual
+- Métricas principais: `Código de erro`, `Stack envolvida`, `Perfil do Desenvolvedor`
+
+## Fluxo da aplicação
+
+![Gemini_Generated_Image_tfkm6rtfkm6rtfkm.png](etc/img/Gemini_Generated_Image_tfkm6rtfkm6rtfkm.png)
 ## Como rodar o projeto
-- Comandos para rodar o projeto
+
+### Comandos para rodar o projeto
+
+**`ADICIONAR APÓS CRIAR BASE DO PROJETO`**
+
 ---
+
 ### Observações
+
 - Todas as etapas serão registradas neste repositório.
 - O README será atualizado conforme o projeto evoluir. 
