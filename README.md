@@ -1,5 +1,5 @@
 # Projeto Integrador - Senac EAD
-
+# Renato Silva
 ## Tema do Projeto
 
 O objetivo do projeto usando o `50k Bug Dataset` é organizar e analisar os registros de bugs para extrair informações
