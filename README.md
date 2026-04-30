@@ -1,5 +1,5 @@
 # Projeto Integrador - Senac EAD
-# Renato Silva
+
 ## Tema do Projeto
 
 O objetivo do projeto usando o `50k Bug Dataset` é organizar e analisar os registros de bugs para extrair informações
@@ -17,7 +17,7 @@ que ajudem a entender padrões, severidade e evolução dos problemas reportados
 
 ## Times
 
-- Time 1 [Lucas Randon Marque | Anne Caroline Risso Sulzer]
+- Time 1 [Lucas Randon Marques | Anne Caroline Risso Sulzer]
 - Time 2 [Jessica Dutra Ribeiro | José Lucas Evélinton da silva]
 - Time 3 [Guilherme Piva Matte | Renato de Sena da Silva]
 
