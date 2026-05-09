@@ -1,6 +1,6 @@
 import pandas as pd
 
-# 1. Carregar dataset com separador correto
+# 1. Carregar dataset com separador
 df = pd.read_csv("bug_dataset_50k.csv", sep=";")
 print("Inicial:", df.shape)
 
