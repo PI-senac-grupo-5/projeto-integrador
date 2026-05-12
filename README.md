@@ -2,7 +2,7 @@
 
 ## Tema do Projeto
 
-O objetivo do projeto usando o `50k Bug Dataset` é organizar e analisar os registros de bugs para extrair informações
+O objetivo do projeto usando o 50k Bug Dataset é organizar e analisar os registros de bugs para extrair informações
 úteis
 que ajudem a entender padrões, severidade e evolução dos problemas reportados.
 
@@ -38,9 +38,9 @@ Explicar brevemente o que o grupo pretende descobrir ou demonstrar com os dados.
 
 ## Planejamento das Tarefas
 
-- **Coleta, validação e transformação dos dados:** Time 1
-- **Análise estatística e métricas:** Time 2
-- **Visualizações e Dashboards:** Time 3
+- *Coleta, validação e transformação dos dados:* Time 1
+- *Análise estatística e métricas:* Time 2
+- *Visualizações e Dashboards:* Time 3
 
 ### Cronograma
 
@@ -55,24 +55,22 @@ Explicar brevemente o que o grupo pretende descobrir ou demonstrar com os dados.
 - Remoção de valores nulos
 - Normalização de valores
 
-## Ideia inicial do Dashboard
+## Métricas Definidas
 
-- Gráfico de barras para comparar categorias
-- Gráfico de linha para evolução temporal
-- Métricas principais: `Código de erro`, `Stack envolvida`, `Perfil do Desenvolvedor`
+| Métrica                    | Objetivo                               | Resultado Esperado               |
+|----------------------------|----------------------------------------|----------------------------------|
+| Quantidade total de bugs   | Medir volume de falhas registradas     | Controle das ocorrências         |
+| Distribuição de severidade | Identificar gravidade dos bugs         | Priorização de correções         |
+| Bugs por ambiente          | Avaliar estabilidade dos ambientes     | Identificação de falhas críticas |
+| Frequência temporal        | Monitorar ocorrência ao longo do tempo | Detectar picos de falhas         |
+| Média de códigos de erro   | Avaliar padrões numéricos              | Identificação de recorrências    |
+| Taxa de bugs críticos      | Medir impacto das falhas graves        | Redução de riscos no sistema     |
 
 ## Fluxo da aplicação
 
 ![Gemini_Generated_Image_tfkm6rtfkm6rtfkm.png](etc/img/Gemini_Generated_Image_tfkm6rtfkm6rtfkm.png)
-## Como rodar o projeto
-
-### Comandos para rodar o projeto
-
-**`ADICIONAR APÓS CRIAR BASE DO PROJETO`**
-
----
 
 ### Observações
 
 - Todas as etapas serão registradas neste repositório.
-- O README será atualizado conforme o projeto evoluir. 
+- O README será atualizado conforme o projeto evoluir.
