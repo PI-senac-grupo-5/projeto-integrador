@@ -17,7 +17,7 @@ que ajudem a entender padrões, severidade e evolução dos problemas reportados
 
 ## Times
 
-- Time 1 [Lucas Randon Marque | Anne Caroline Risso Sulzer]
+- Time 1 [Lucas Randon Marques | Anne Caroline Risso Sulzer]
 - Time 2 [Jessica Dutra Ribeiro | José Lucas Evélinton da silva]
 - Time 3 [Guilherme Piva Matte | Renato de Sena da Silva]
 
