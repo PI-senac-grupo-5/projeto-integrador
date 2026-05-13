@@ -26,7 +26,7 @@ padroes_remover = {
         {"string": "detected in system", "posicao": "fim"}
     ],
     "description": [
-        {"string": "this issue relates to", "posicao": "inicio"},
+        {"string": "this issue relates to a", "posicao": "inicio"},
         {"string": "occurring in the application", "posicao": "fim"}
     ],
     "root_cause": [
