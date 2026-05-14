@@ -66,24 +66,28 @@ def main():
 # DASHBOARD STREAMLIT
 # =========================
 
-def mostrar_total_reports(reports):
-    streamlit.metric(label="Total de reports", value=len(reports))
+import os
+import pandas
+import streamlit
 
 
 def mostrar_distribuicao_severidade(data):
-    streamlit.subheader("Distribuição de Severidade")
+    streamlit.subheader("📊 Distribuição de Severidade")
 
-    severity_count = data["severity"].value_counts()
+    severity_count = data["severity"].value_counts().sort_values(ascending=False)
+
     streamlit.bar_chart(severity_count)
+    streamlit.caption("Quantidade de bugs por nível de severidade")
 
 
 def mostrar_taxa_criticos(data):
-    streamlit.subheader("Taxa de Bugs Críticos")
+    streamlit.subheader("🔥 Taxa de Bugs Críticos")
 
     total = len(data)
     criticos = len(data[data["severity"] == "critical"])
-
     taxa = (criticos / total) * 100 if total > 0 else 0
+
+    streamlit.progress(taxa / 100)
 
     col1, col2 = streamlit.columns(2)
 
@@ -91,41 +95,55 @@ def mostrar_taxa_criticos(data):
         streamlit.metric("Críticos", criticos)
 
     with col2:
-        streamlit.metric("Taxa", f"{taxa:.2f}%")
+        streamlit.metric("Taxa crítica", f"{taxa:.2f}%")
 
-    streamlit.progress(min(taxa / 100, 1))
-
-    streamlit.write(f"{criticos} de {total} bugs são críticos")
+    if taxa > 20:
+        streamlit.error("⚠️ Muitos bugs críticos!")
+    else:
+        streamlit.success("✔️ Nível crítico sob controle")
 
 
 def dashboard(reports):
     data = pandas.DataFrame([r.__dict__ for r in reports])
 
     streamlit.set_page_config(layout="wide")
-    streamlit.title("Dashboard de Bugs")
+    streamlit.title(" Dashboard de Bugs")
 
+    # ===== KPIs =====
+    total = len(reports)
+    criticos = len(data[data["severity"] == "critical"])
+    taxa = (criticos / total) * 100 if total > 0 else 0
+
+    col1, col2, col3 = streamlit.columns(3)
+
+    col1.metric("Total de Reports", total)
+    col2.metric("Críticos", criticos)
+    col3.metric("Taxa Crítica", f"{taxa:.2f}%")
+
+    streamlit.divider()
+
+    # ===== Sidebar =====
     opcao = streamlit.sidebar.multiselect(
-        "O que você quer ver?",
+        "📊 Visualizações",
         [
-            "Total de Reports",
             "Distribuição de Severidade",
             "Taxa de Bugs Críticos"
         ],
         default=[
-            "Total de Reports",
             "Distribuição de Severidade",
             "Taxa de Bugs Críticos"
         ]
     )
 
-    if "Total de Reports" in opcao:
-        mostrar_total_reports(reports)
+    colA, colB = streamlit.columns(2)
 
     if "Distribuição de Severidade" in opcao:
-        mostrar_distribuicao_severidade(data)
+        with colA:
+            mostrar_distribuicao_severidade(data)
 
     if "Taxa de Bugs Críticos" in opcao:
-        mostrar_taxa_criticos(data)
+        with colB:
+            mostrar_taxa_criticos(data)
 
 
 def main():
