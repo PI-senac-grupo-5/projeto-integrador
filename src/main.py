@@ -62,5 +62,95 @@ def main():
     streamlit.set_page_config(layout="wide")
     streamlit.metric(label="Total de reports", value=len(reports))
 
+# =========================
+# DASHBOARD STREAMLIT
+# =========================
+
+def mostrar_total_reports(reports):
+    streamlit.metric(label="Total de reports", value=len(reports))
+
+
+def mostrar_distribuicao_severidade(data):
+    streamlit.subheader("Distribuição de Severidade")
+
+    severity_count = data["severity"].value_counts()
+    streamlit.bar_chart(severity_count)
+
+
+def mostrar_taxa_criticos(data):
+    streamlit.subheader("Taxa de Bugs Críticos")
+
+    total = len(data)
+    criticos = len(data[data["severity"] == "critical"])
+
+    taxa = (criticos / total) * 100 if total > 0 else 0
+
+    col1, col2 = streamlit.columns(2)
+
+    with col1:
+        streamlit.metric("Críticos", criticos)
+
+    with col2:
+        streamlit.metric("Taxa", f"{taxa:.2f}%")
+
+    streamlit.progress(min(taxa / 100, 1))
+
+    streamlit.write(f"{criticos} de {total} bugs são críticos")
+
+
+def dashboard(reports):
+    data = pandas.DataFrame([r.__dict__ for r in reports])
+
+    streamlit.set_page_config(layout="wide")
+    streamlit.title("Dashboard de Bugs")
+
+    opcao = streamlit.sidebar.multiselect(
+        "O que você quer ver?",
+        [
+            "Total de Reports",
+            "Distribuição de Severidade",
+            "Taxa de Bugs Críticos"
+        ],
+        default=[
+            "Total de Reports",
+            "Distribuição de Severidade",
+            "Taxa de Bugs Críticos"
+        ]
+    )
+
+    if "Total de Reports" in opcao:
+        mostrar_total_reports(reports)
+
+    if "Distribuição de Severidade" in opcao:
+        mostrar_distribuicao_severidade(data)
+
+    if "Taxa de Bugs Críticos" in opcao:
+        mostrar_taxa_criticos(data)
+
+
+def main():
+    cleaned_csv_path = os.path.join(BASE_DIR, "..", "etc", "bug_dataset_clean.csv")
+
+    try:
+        cleaned_csv = read_csv(cleaned_csv_path)
+
+    except FileNotFoundError:
+        print("Falha ao encontrar dataset limpo!")
+        sanitize_csv(cleaned_csv_path)
+
+        if not os.path.exists(cleaned_csv_path):
+            print("<[ERRO CRITICO]> Dataset ainda não existe após sanitização")
+            return
+
+        cleaned_csv = read_csv(cleaned_csv_path)
+
+    reports = BugReport.parse_csv(cleaned_csv)
+
+    if len(reports) == 0:
+        print("Nenhum BugReport válido encontrado")
+        return
+
+    dashboard(reports)
+    
 if __name__ == '__main__':
     main()
