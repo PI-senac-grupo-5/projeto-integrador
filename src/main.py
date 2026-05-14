@@ -2,13 +2,14 @@ import os
 from typing import List
 
 import pandas
+import streamlit
 
 from models.bug_report import BugReport
 
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 def sanitize_csv(csv_path):
     print("Sanitizando dataset")
-    bug_dataset_path = "../etc/bug_dataset.csv"
+    bug_dataset_path = os.path.join(BASE_DIR, "..", "etc", "bug_dataset_50k.csv")
     print("Caminho do csv bruto: ", bug_dataset_path)
 
     # colocar a pipeline aqui dentro
@@ -23,7 +24,7 @@ def read_csv(cleaned_csv_path):
 
 
 def main():
-    cleaned_csv_path = "../etc/bug_dataset_clean.csv"
+    cleaned_csv_path = os.path.join(BASE_DIR, "..", "etc", "bug_dataset_clean.csv")
     try:
         cleaned_csv = read_csv(cleaned_csv_path)
 
@@ -35,7 +36,7 @@ def main():
 
         if not os.path.exists(cleaned_csv_path):
             # se não criar o dataset, falha e encerra a aplicação
-            print("Dataset ainda não existe após sanitização")
+            print("<[ERRO CRITICO]> Dataset ainda não existe após sanitização")
             return
 
         cleaned_csv = read_csv(cleaned_csv_path)
@@ -58,7 +59,8 @@ def main():
                 and "memory leak" in report.title
                 and "laravel" in report.tech_stack):
             print("Encontrado report com status 404: ", report.__dict__)
-
+    streamlit.set_page_config(layout="wide")
+    streamlit.metric(label="Total de reports", value=len(reports))
 
 if __name__ == '__main__':
     main()
