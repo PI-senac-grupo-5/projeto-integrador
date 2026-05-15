@@ -36,6 +36,10 @@ ambientes.
 
 Explicar brevemente o que o grupo pretende descobrir ou demonstrar com os dados.
 
+## Streamlit
+
+A aplicação pode ser acessada pelo seguinte link: https://projeto-integrador-grupo-5.streamlit.app
+
 ## Planejamento das Tarefas
 
 - *Coleta, validação e transformação dos dados:* Time 1
@@ -57,14 +61,13 @@ Explicar brevemente o que o grupo pretende descobrir ou demonstrar com os dados.
 
 ## Métricas Definidas
 
-| Métrica                    | Objetivo                               | Resultado Esperado               |
-|----------------------------|----------------------------------------|----------------------------------|
-| Quantidade total de bugs   | Medir volume de falhas registradas     | Controle das ocorrências         |
-| Distribuição de severidade | Identificar gravidade dos bugs         | Priorização de correções         |
-| Bugs por ambiente          | Avaliar estabilidade dos ambientes     | Identificação de falhas críticas |
-| Frequência temporal        | Monitorar ocorrência ao longo do tempo | Detectar picos de falhas         |
-| Média de códigos de erro   | Avaliar padrões numéricos              | Identificação de recorrências    |
-| Taxa de bugs críticos      | Medir impacto das falhas graves        | Redução de riscos no sistema     |
+| Métrica                    | Objetivo                           | Resultado Esperado               |
+|----------------------------|------------------------------------|----------------------------------|
+| Quantidade total de bugs   | Medir volume de falhas registradas | Controle das ocorrências         |
+| Distribuição de severidade | Identificar gravidade dos bugs     | Priorização de correções         |
+| Bugs por ambiente          | Avaliar estabilidade dos ambientes | Identificação de falhas críticas |
+| Média de códigos de erro   | Avaliar padrões numéricos          | Identificação de recorrências    |
+| Taxa de bugs críticos      | Medir impacto das falhas graves    | Redução de riscos no sistema     |
 
 ## Fluxo da aplicação
 
