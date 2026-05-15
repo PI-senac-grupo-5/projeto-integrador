@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 
 
 class BugReport:
@@ -22,3 +23,23 @@ class BugReport:
         self.environment = environment
         self.developer_role = developer_role
         self.created_at = created_at
+
+    @staticmethod
+    def parse_csv(cleaned_csv) -> List["BugReport"]:
+        """
+        Converte o DataFrame inteiro em lista de BugReport.
+
+        - Cada linha vira um BugReport
+        - Linhas inválidas são ignoradas
+        - Se todas falharem → retorna lista vazia
+        """
+
+        reports = []
+
+        for _, row in cleaned_csv.iterrows():
+            try:
+                reports.append(BugReport(**row.to_dict()))
+            except (ValueError, TypeError):
+                continue
+
+        return reports
