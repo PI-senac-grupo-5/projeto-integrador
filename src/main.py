@@ -14,81 +14,40 @@ def sanitize_csv(csv_path):
     # colocar a pipeline aqui dentro
 
     # 1. Carregar dataset com separador correto ","
-    df = pandas.read_csv(bug_dataset_path, sep=",")
-    print("Inicial:", df.shape)
+    data_frame = pandas.read_csv(bug_dataset_path, sep=",")
+    print("Inicial:", data_frame.shape)
 
     # 2. Remover linhas com valores nulos
-    df = df.dropna()
-    print("Após remover nulos:", df.shape)
+    data_frame = data_frame.dropna()
+    print("Após remover nulos:", data_frame.shape)
 
-    # 3. Remover coluna identificadora (bug_id) ANTES de checar duplicatas
-    print("Bug IDs únicos antes da remoção:", df['bug_id'].nunique(), df.shape[0])
-    df = df.drop(columns=['bug_id',
-                          'bug_category',
-                          'description',
-                          'root_cause',
-                          'suggested_fix',
-                          'explanation'])
-    print("Colunas após remover bug_id:", df.columns)
+    # colunas removidas por redundancia nos dados
+    columns_to_remove = ['bug_id',
+                         'bug_category',
+                         'description',
+                         'root_cause',
+                         'suggested_fix',
+                         'explanation']
+    data_frame = data_frame.drop(columns=columns_to_remove)
 
-    # 4. Normalizar texto
-    # include=object - str não reconhecido
-    for col in df.select_dtypes(include='object').columns:
+    # Normaliza o texto
+    for col in data_frame.select_dtypes(include='object').columns:
         if col != 'created_at':
-            df[col] = df[col].str.lower().str.strip()
+            data_frame[col] = data_frame[col].str.lower().str.strip()
+        if col == 'title':
+            data_frame[col] = data_frame[col].str.replace("detected in system", "")
 
-    padroes_remover = {
-        "title": [
-            {"string": "detected in system", "posicao": "fim"}
-        ]
-    }
+    data_frame['created_at'] = pandas.to_datetime(
+        data_frame['created_at'], format='%Y-%m-%d', errors='coerce')
 
-    def limpar_coluna(serie, regras):
-        for regra in regras:
-            texto = regra["string"].strip()
-            if regra["posicao"] == "inicio":
-                # remove no início, ignorando espaços extras
-                serie = serie.str.replace(rf"^{texto}\s*", "", regex=True)
-            elif regra["posicao"] == "fim":
-                # remove no fim, ignorando ponto final e espaços
-                serie = serie.str.replace(rf"\s*{texto}\.*$", "", regex=True)
-        return serie.str.strip()
+    data_frame['created_at'] = data_frame['created_at'].dt.date
 
-    # aplicar em todas as colunas
-    for col, regras in padroes_remover.items():
-        if col in df.columns:
-            df[col] = limpar_coluna(df[col], regras)
-    # Remover duplicados (após remover bug_id e normalizar)
-    # Nesta etapa seria possível remover linhas duplicadas após normalização.
-    # No entanto, mantive todas as linhas porque cada registro representa um bug contado,
-    # mesmo que o texto seja igual.
+    data_frame['error_code'] = pandas.to_numeric(data_frame['error_code'], errors='coerce')
 
-    # 5. Converter coluna de data com formato explícito
-    # format='%Y-%m-%d'
-    df['created_at'] = pandas.to_datetime(
-        df['created_at'], format='%Y-%m-%d', errors='coerce')
+    data_frame['severity'] = data_frame['severity'].astype('category')
+    data_frame['environment'] = data_frame['environment'].astype('category')
 
-    # 5.1 Remover a hora, mantendo apenas a data
-    df['created_at'] = df['created_at'].dt.date
-
-    # 6. Converter coluna numérica
-    df['error_code'] = pandas.to_numeric(df['error_code'], errors='coerce')
-
-    # 7. Converter colunas categóricas (após normalização)
-    df['severity'] = df['severity'].astype('category')
-    df['environment'] = df['environment'].astype('category')
-
-    # 9. Verificação final
-    print(df.head())
-    print(df.info())
-    print("Valores únicos em severity:", df['severity'].unique())
-    print("Valores únicos em environment:", df['environment'].unique())
-    print("Nulos restantes:\n", df.isnull().sum())
-    print("Distribuição error_code:\n", df['error_code'].describe())
-
-    # 10. Salvar
-    # Salvar em CSV (mais universal, abre em Excel)
-    df.to_csv("../etc/bug_dataset_clean.csv", index=False)
+    data_frame.to_csv("../etc/bug_dataset_clean.csv", index=False)
 
     # salvar o arquivo no path "/etc/bug_dataset_clean.csv"
     print("Arquivos salvos com sucesso!")
@@ -105,7 +64,7 @@ def read_csv(cleaned_csv_path):
 # =========================
 
 def mostrar_distribuicao_severidade(data):
-    streamlit.subheader("📊 Distribuição de Severidade")
+    streamlit.subheader("Distribuição de Severidade")
 
     severity_count = data["severity"].value_counts().sort_values(ascending=False)
 
@@ -114,7 +73,7 @@ def mostrar_distribuicao_severidade(data):
 
 
 def mostrar_taxa_criticos(data):
-    streamlit.subheader("🔥 Taxa de Bugs Críticos")
+    streamlit.subheader("Taxa de Bugs Críticos")
 
     total = len(data)
     criticos = len(data[data["severity"] == "critical"])
@@ -131,9 +90,9 @@ def mostrar_taxa_criticos(data):
         streamlit.metric("Taxa crítica", f"{taxa:.2f}%")
 
     if taxa > 20:
-        streamlit.error("⚠️ Muitos bugs críticos!")
+        streamlit.error("Muitos bugs críticos!")
     else:
-        streamlit.success("✔️ Nível crítico sob controle")
+        streamlit.success("️Nível crítico sob controle")
 
 
 def dashboard(reports):
@@ -157,7 +116,7 @@ def dashboard(reports):
 
     # ===== Sidebar =====
     opcao = streamlit.sidebar.multiselect(
-        "📊 Visualizações",
+        "Visualizações",
         [
             "Distribuição de Severidade",
             "Taxa de Bugs Críticos"
@@ -168,14 +127,14 @@ def dashboard(reports):
         ]
     )
 
-    colA, colB = streamlit.columns(2)
+    col_a, col_b = streamlit.columns(2)
 
     if "Distribuição de Severidade" in opcao:
-        with colA:
+        with col_a:
             mostrar_distribuicao_severidade(data)
 
     if "Taxa de Bugs Críticos" in opcao:
-        with colB:
+        with col_b:
             mostrar_taxa_criticos(data)
 
 
@@ -185,25 +144,14 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 def main():
     cleaned_csv_path = os.path.join(BASE_DIR, "..", "etc", "bug_dataset_clean.csv")
     try:
+        sanitize_csv(cleaned_csv_path)
         cleaned_csv = read_csv(cleaned_csv_path)
 
     except FileNotFoundError:
-        print("Falha ao encontrar dataset limpo!")
-        # caso falhe em encontrar o arquivo "bug_dataset_clean.csv" no diretório "/etc", chama a pipeline de limpeza e cria o arquivo
+        print("<[ERRO CRITICO]> Dataset ainda não existe após sanitização")
+        return
 
-        sanitize_csv(cleaned_csv_path)
-
-        if not os.path.exists(cleaned_csv_path):
-            # se não criar o dataset, falha e encerra a aplicação
-            print("<[ERRO CRITICO]> Dataset ainda não existe após sanitização")
-            return
-
-        cleaned_csv = read_csv(cleaned_csv_path)
-
-    # csv que vamos trabalhar "cleaned_csv"
     reports = BugReport.parse_csv(cleaned_csv)
-
-    # lista de objetos bug_report "reports"
 
     dashboard(reports)
 
