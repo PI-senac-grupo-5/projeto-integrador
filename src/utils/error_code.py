@@ -25,4 +25,4 @@ class ErrorCode(Enum):
         try:
             return descriptions[cls(code)]
         except ValueError:
-            return "Unknown Error"
+            return "Erro desconhecido"

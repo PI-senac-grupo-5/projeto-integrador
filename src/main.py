@@ -12,17 +12,15 @@ def sanitize_csv(csv_path):
     bug_dataset_path = os.path.join(BASE_DIR, "..", "etc", "bug_dataset_50k.csv")
     print("Caminho do csv bruto: ", bug_dataset_path)
 
-    # colocar a pipeline aqui dentro
-
-    # 1. Carregar dataset com separador correto ","
+    # Carrega dataset com separador correto ","
     data_frame = pandas.read_csv(bug_dataset_path, sep=",")
     print("Inicial:", data_frame.shape)
 
-    # 2. Remover linhas com valores nulos
+    # Remove linhas com valores nulos
     data_frame = data_frame.dropna()
     print("Após remover nulos:", data_frame.shape)
 
-    # colunas removidas por redundancia nos dados
+    # colunas removidas por redundância nos dados
     columns_to_remove = ['bug_id',
                          'bug_category',
                          'description',
@@ -408,6 +406,7 @@ def dashboard(reports):
 
     if "Timeline" in opcao:
         bugs_timeline_dashboard(data)
+
     if "Heatmap" in opcao:
         heatmap_dashboard(data)
 
@@ -420,6 +419,7 @@ RAW_CSV_PATH = os.path.join(ETC_DIR, "bug_dataset_50k.csv")
 
 
 def main():
+    print("Iniciando...")
     try:
         if not os.path.isfile(CLEAN_CSV_PATH):
             sanitize_csv(CLEAN_CSV_PATH)

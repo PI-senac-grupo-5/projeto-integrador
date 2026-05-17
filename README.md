@@ -58,6 +58,7 @@ A aplicação pode ser acessada pelo seguinte link: https://projeto-integrador-g
 
 - Remoção de valores nulos
 - Normalização de valores
+- Redução significativa do `CSV` final com redução de redundância nas `string` de certas colunas
 
 ## Métricas Definidas
 
@@ -69,9 +70,6 @@ A aplicação pode ser acessada pelo seguinte link: https://projeto-integrador-g
 | Média de códigos de erro   | Avaliar padrões numéricos          | Identificação de recorrências    |
 | Taxa de bugs críticos      | Medir impacto das falhas graves    | Redução de riscos no sistema     |
 
-## Fluxo da aplicação
-
-![Gemini_Generated_Image_tfkm6rtfkm6rtfkm.png](etc/img/Gemini_Generated_Image_tfkm6rtfkm6rtfkm.png)
 
 ### Observações
 
